@@ -1,5 +1,5 @@
 import { mkdir } from 'node:fs/promises';
-import { join, resolve, extname } from 'node:path';
+import { join, resolve, extname, sep } from 'node:path';
 import { Engine } from './engine';
 import { DatabaseStore } from './database';
 import { SecretVault } from './vault';
@@ -35,7 +35,25 @@ const json = (value: unknown, status = 200) => Response.json(value, { status, he
 const error = (message: string, status = 400) => json({ error: message }, status);
 async function body(request: Request) { try { return await request.json(); } catch { throw new Error('Expected a JSON request body'); } }
 function find(id: string) { const flow = workflows.find(item => item.id === id); if (!flow) throw new Error('Workflow not found'); return flow; }
-const mime: Record<string, string> = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.ico': 'image/x-icon' };
+const mime: Record<string, string> = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.gif': 'image/gif',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+  '.wasm': 'application/wasm',
+  '.json': 'application/json; charset=utf-8',
+  '.map': 'application/json; charset=utf-8',
+};
 
 let server: Bun.Server<SocketData>;
 server = Bun.serve<SocketData>({
@@ -125,12 +143,19 @@ server = Bun.serve<SocketData>({
       const customMatch = path.match(/^\/api\/custom-nodes\/([^/]+)$/);
       if (customMatch && method === 'DELETE') { await plugins.removeCustom(customMatch[1]); return json({ ok: true }); }
       if (path.startsWith('/api/')) return error('Endpoint not found', 404);
-      const dist = resolve(root, 'dist'); const filePath = resolve(dist, `.${path === '/' ? '/index.html' : path}`);
-      const target = filePath.startsWith(dist + '\\') || filePath === dist ? filePath : join(dist, 'index.html');
-      const file = Bun.file(target);
-      if (await file.exists()) return new Response(file, { headers: { 'Content-Type': mime[extname(target)] || 'application/octet-stream' } });
+      const dist = resolve(root, 'dist');
+      const safePath = path === '/' ? '/index.html' : path;
+      const filePath = resolve(dist, `.${safePath}`);
+      const isInsideDist = filePath.startsWith(dist + sep) || filePath === dist;
+      if (!isInsideDist) return error('Access denied', 403);
+      const file = Bun.file(filePath);
+      if (await file.exists()) {
+        const ext = extname(filePath).toLowerCase();
+        return new Response(file, { headers: { 'Content-Type': mime[ext] || file.type || 'application/octet-stream' } });
+      }
+      if (path.startsWith('/assets/')) return error('Asset not found', 404);
       const index = Bun.file(join(dist, 'index.html'));
-      return await index.exists() ? new Response(index, { headers: { 'Content-Type': 'text/html' } }) : error('UI not built. Run bun run dev or bun run build.', 404);
+      return await index.exists() ? new Response(index, { headers: { 'Content-Type': 'text/html; charset=utf-8' } }) : error('UI not built. Run bun run dev or bun run build.', 404);
     } catch (cause) { const message = cause instanceof Error ? cause.message : String(cause); engine.log('error', message); return error(message, message === 'Workflow not found' ? 404 : 400); }
   },
   websocket: {
