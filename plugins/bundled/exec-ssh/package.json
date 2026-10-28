@@ -1,0 +1,8 @@
+{
+  "name": "@wflow/exec-ssh",
+  "version": "0.1.0",
+  "description": "Local command and SSH command nodes for Wflow",
+  "main": "index.cjs",
+  "dependencies": { "ssh2": "^1.17.0" },
+  "wflow": { "entry": "./index.cjs" }
+}

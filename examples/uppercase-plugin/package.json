@@ -1,0 +1,7 @@
+{
+  "name": "wflow-node-uppercase-example",
+  "version": "0.1.0",
+  "description": "Example Wflow node package",
+  "main": "index.cjs",
+  "wflow": { "entry": "./index.cjs" }
+}

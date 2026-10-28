@@ -1,0 +1,7 @@
+{
+  "name": "@wflow/openai",
+  "version": "0.1.0",
+  "description": "OpenAI Responses API node for Wflow",
+  "main": "index.cjs",
+  "wflow": { "entry": "./index.cjs" }
+}

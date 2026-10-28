@@ -1,0 +1,7 @@
+{
+  "name": "@wflow/redis",
+  "version": "0.1.0",
+  "description": "Redis operations and Pub/Sub subscriber nodes for Wflow",
+  "main": "index.cjs",
+  "wflow": { "entry": "./index.cjs" }
+}

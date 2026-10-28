@@ -1,0 +1,7 @@
+{
+  "name": "@wflow/file-csv",
+  "version": "0.1.0",
+  "description": "File input/output and CSV parsing nodes for Wflow",
+  "main": "index.cjs",
+  "wflow": { "entry": "./index.cjs" }
+}

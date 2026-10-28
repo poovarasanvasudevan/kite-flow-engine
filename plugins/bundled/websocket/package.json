@@ -1,0 +1,7 @@
+{
+  "name": "@wflow/websocket",
+  "version": "0.1.0",
+  "description": "WebSocket server input, output, and request client nodes for Wflow",
+  "main": "index.cjs",
+  "wflow": { "entry": "./index.cjs" }
+}

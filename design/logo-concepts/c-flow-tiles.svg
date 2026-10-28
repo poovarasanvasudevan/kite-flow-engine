@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Wflow modular flow logo concept">
+  <title>Wflow Contained W</title>
+  <defs>
+    <mask id="w-cutout">
+      <rect width="256" height="256" fill="#ffffff"/>
+      <path d="m61 89 28 79 39-67 39 67 28-79" fill="none" stroke="#000000" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <rect x="31" y="31" width="194" height="194" rx="42" fill="#111111" mask="url(#w-cutout)"/>
+</svg>

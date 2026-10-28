@@ -1,0 +1,7 @@
+node_modules/
+dist/
+data/
+plugins/node_modules/
+plugins/bun.lock
+plugins/package.json
+.env
