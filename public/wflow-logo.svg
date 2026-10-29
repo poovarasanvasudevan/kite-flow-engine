@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%" fill="none" role="img" aria-label="Wflow Logo">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <!-- Flow Pipeline Gradient -->
+    <linearGradient id="flowTrack" x1="18" y1="36" x2="110" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="48%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+
+    <!-- Secondary Pulse Gradient -->
+    <linearGradient id="pulseTrack" x1="18" y1="36" x2="110" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#818CF8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#C084FC" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Node Glow Filter -->
+    <filter id="coreGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <radialGradient id="centerNodeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Squircle Base with Subtle Border -->
+  <rect width="128" height="128" rx="32" fill="url(#bgGrad)"/>
+  <rect x="1.5" y="1.5" width="125" height="125" rx="30.5" stroke="#334155" stroke-width="2" stroke-opacity="0.6"/>
+
+  <!-- Subtle Underlying Grid Accents -->
+  <circle cx="64" cy="64" r="44" stroke="#1E293B" stroke-width="1.5" stroke-dasharray="4 6"/>
+
+  <!-- Ambient Glow Behind Main W -->
+  <path d="M26 42 L45 92 L64 52 L83 92 L102 42" 
+        stroke="#6366F1" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.18" filter="url(#coreGlow)"/>
+
+  <!-- Main Pipeline Vector 'W' Flow -->
+  <path d="M26 42 L45 92 L64 52 L83 92 L102 42" 
+        stroke="url(#flowTrack)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- High-Velocity Inner Track -->
+  <path d="M29 45 L45 88 L64 54 L83 88 L99 45" 
+        stroke="url(#pulseTrack)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Orchestration Flow Nodes (5 Vertices) -->
+  <!-- 1. Start Input Node (Cyan) -->
+  <circle cx="26" cy="42" r="7.5" fill="#0B132B" stroke="#38BDF8" stroke-width="4.5"/>
+  <circle cx="26" cy="42" r="2.5" fill="#38BDF8"/>
+
+  <!-- 2. Logic Left Pivot Node (Blue) -->
+  <circle cx="45" cy="92" r="7.5" fill="#0B132B" stroke="#60A5FA" stroke-width="4.5"/>
+  <circle cx="45" cy="92" r="2.5" fill="#60A5FA"/>
+
+  <!-- 3. Central Dispatch Nexus (Glow Node) -->
+  <circle cx="64" cy="52" r="9" fill="url(#centerNodeGrad)" filter="url(#coreGlow)"/>
+
+  <!-- 4. Logic Right Pivot Node (Indigo) -->
+  <circle cx="83" cy="92" r="7.5" fill="#0B132B" stroke="#818CF8" stroke-width="4.5"/>
+  <circle cx="83" cy="92" r="2.5" fill="#818CF8"/>
+
+  <!-- 5. Output Action Node (Purple) -->
+  <circle cx="102" cy="42" r="7.5" fill="#0B132B" stroke="#A855F7" stroke-width="4.5"/>
+  <circle cx="102" cy="42" r="2.5" fill="#A855F7"/>
+</svg>

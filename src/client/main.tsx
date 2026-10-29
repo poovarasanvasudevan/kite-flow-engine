@@ -23,6 +23,7 @@ import { HistoryDrawer } from './HistoryDrawer';
 import { AutomationsPage } from './AutomationsPage';
 import { ExecutionHistoryPage } from './ExecutionHistoryPage';
 import { PluginsPage } from './PluginsPage';
+import { ConnectorsPage } from './ConnectorsPage';
 import { SecretVaultPage } from './SecretVaultPage';
 import { toPng } from 'html-to-image';
 
@@ -401,59 +402,59 @@ function Studio() {
 
   return <div className="app-shell">
     <nav className="global-rail" aria-label="Main navigation">
-      <button className="rail-logo" aria-label="Wflow home" data-tooltip="Wflow home" onClick={showAutomations}><img src="/wflow-openart-logo.jpg" alt="" /></button>
+      <button className="rail-logo" aria-label="Wflow home" data-tooltip="Wflow home" onClick={showAutomations}><img src="/wflow-logo.svg" alt="Wflow Logo" /></button>
       <div className="rail-divider" />
-      <button className={`rail-item ${page === 'automations' || page === 'history' || page === 'execution' ? 'active' : ''}`} aria-label="Automations" data-tooltip="Automations" onClick={showAutomations}><GitBranch size={22} /></button>
-      <button className="rail-item" aria-label="Debug activity" data-tooltip="Debug activity" onClick={() => { setBottomTab('debug'); setBottomOpen(true); }}><Activity size={22} /></button>
-      <button className={`rail-item ${page === 'plugins' ? 'active' : ''}`} aria-label="Plugins and nodes" data-tooltip="Plugins and nodes" onClick={showPlugins}><Layers3 size={22} /></button>
-      <button className={`rail-item ${page === 'connectors' ? 'active' : ''}`} aria-label="Connectors" data-tooltip="Connectors" onClick={showConnectors}><Cable size={22} /></button>
-      <button className={`rail-item ${page === 'vault' ? 'active' : ''}`} aria-label="Secret Vault" data-tooltip="Secret Vault" onClick={showVault}><KeyRound size={22} /></button>
+      <button className={`rail-item ${page === 'automations' || page === 'history' || page === 'execution' ? 'active' : ''}`} aria-label="Automations" data-tooltip="Automations" onClick={showAutomations}><GitBranch size={20} /></button>
+      <button className="rail-item" aria-label="Debug activity" data-tooltip="Debug activity" onClick={() => { setBottomTab('debug'); setBottomOpen(true); }}><Activity size={20} /></button>
+      <button className={`rail-item ${page === 'plugins' ? 'active' : ''}`} aria-label="Plugins and nodes" data-tooltip="Plugins and nodes" onClick={showPlugins}><Layers3 size={20} /></button>
+      <button className={`rail-item ${page === 'connectors' ? 'active' : ''}`} aria-label="Connectors" data-tooltip="Connectors" onClick={showConnectors}><Cable size={20} /></button>
+      <button className={`rail-item ${page === 'vault' ? 'active' : ''}`} aria-label="Secret Vault" data-tooltip="Secret Vault" onClick={showVault}><KeyRound size={20} /></button>
       <div className="rail-spacer" />
-      <button className="rail-item" aria-label="Manage plugins" data-tooltip="Manage plugins" onClick={showPlugins}><Settings2 size={22} /></button>
+      <button className="rail-item" aria-label="Manage plugins" data-tooltip="Manage plugins" onClick={showPlugins}><Settings2 size={20} /></button>
       <button className="rail-grid" aria-label="Node library" data-tooltip="Node library" onClick={() => setPalette('All')}><span/><span/><span/><span/><span/><span/><span/><span/><span/></button>
     </nav>
 
     <div className="application">
       <header className="global-header">
-        <div className="breadcrumbs"><button onClick={showAutomations}>Workspace</button><ChevronRight size={15}/>{page === 'editor' ? <><button onClick={showAutomations}>Automations</button><ChevronRight size={15}/><strong>{flow?.name || 'Workflows'}</strong></> : page === 'history' || page === 'execution' ? <><button onClick={showAutomations}>Automations</button><ChevronRight size={15}/>{page === 'execution' && historyRoute ? <><button onClick={() => showExecutionHistory(historyRoute.workflowId)}>History</button><ChevronRight size={15}/><strong>Execution details</strong></> : <strong>History</strong>}</> : <strong>{page === 'plugins' ? 'Plugins & nodes' : page === 'connectors' ? 'Connectors' : page === 'vault' ? 'Secret Vault' : 'Automations'}</strong>}</div>
+        <div className="breadcrumbs"><button onClick={showAutomations}>Workspace</button><ChevronRight size={13}/>{page === 'editor' ? <><button onClick={showAutomations}>Automations</button><ChevronRight size={13}/><strong>{flow?.name || 'Workflows'}</strong></> : page === 'history' || page === 'execution' ? <><button onClick={showAutomations}>Automations</button><ChevronRight size={13}/>{page === 'execution' && historyRoute ? <><button onClick={() => showExecutionHistory(historyRoute.workflowId)}>History</button><ChevronRight size={13}/><strong>Execution details</strong></> : <strong>History</strong>}</> : <strong>{page === 'plugins' ? 'Plugins & nodes' : page === 'connectors' ? 'Connectors' : page === 'vault' ? 'Secret Vault' : 'Automations'}</strong>}</div>
         <div className="header-spacer" />
-        {page === 'editor' && <div className="header-search"><Search size={17}/><input aria-label="Search nodes" placeholder="Search nodes" value={query} onClick={() => setPalette('All')} onChange={event => { setQuery(event.target.value); setPalette('All'); }}/></div>}
-        <button className="header-plus" title="New workflow" onClick={createFlow}><Plus size={19}/></button>
-        <button className="header-icon" title="All workflows" onClick={showAutomations}><ListChecks size={20}/></button>
-        <button className="header-icon" title="Help" onClick={() => { setBottomTab('help'); setBottomOpen(true); }}><CircleHelp size={21}/></button>
-        <button className="header-icon" title="Debug activity" onClick={() => { setBottomTab('debug'); setBottomOpen(true); }}><Bell size={20}/>{logs.some(item => item.level === 'error') && <i className="notification-dot"/>}</button>
+        {page === 'editor' && <div className="header-search"><Search size={14}/><input aria-label="Search nodes" placeholder="Search nodes" value={query} onClick={() => setPalette('All')} onChange={event => { setQuery(event.target.value); setPalette('All'); }}/></div>}
+        <button className="header-plus" title="New workflow" onClick={createFlow}><Plus size={15}/></button>
+        <button className="header-icon" title="All workflows" onClick={showAutomations}><ListChecks size={16}/></button>
+        <button className="header-icon" title="Help" onClick={() => { setBottomTab('help'); setBottomOpen(true); }}><CircleHelp size={16}/></button>
+        <button className="header-icon" title="Debug activity" onClick={() => { setBottomTab('debug'); setBottomOpen(true); }}><Bell size={16}/>{logs.some(item => item.level === 'error') && <i className="notification-dot"/>}</button>
         <button className="user-avatar" title="Local workspace">W</button>
       </header>
-      {page === 'automations' ? <AutomationsPage onOpen={id => { void openFlow(id).catch(error => notify(error.message, true)); }} onHistory={id => showExecutionHistory(id)} onCreate={() => { void createFlow(); }}/> : (page === 'history' || page === 'execution') && historyRoute ? <ExecutionHistoryPage workflowId={historyRoute.workflowId} executionId={historyRoute.executionId} onBack={showAutomations} onOpenWorkflow={() => { void openFlow(historyRoute.workflowId).catch(error => notify(error.message, true)); }} onOpenRun={id => showExecutionHistory(historyRoute.workflowId, id)} onBackToHistory={() => showExecutionHistory(historyRoute.workflowId)}/> : page === 'plugins' || page === 'connectors' ? <PluginsPage key={page} connectorsOnly={page === 'connectors'} onBrowsePlugins={showPlugins} definitions={bootstrap.definitions} packages={bootstrap.packages} refresh={refresh} notify={notify} openCustom={() => setCustomOpen(true)}/> : page === 'vault' ? <SecretVaultPage notify={notify}/> : <>
+      {page === 'automations' ? <AutomationsPage onOpen={id => { void openFlow(id).catch(error => notify(error.message, true)); }} onHistory={id => showExecutionHistory(id)} onCreate={() => { void createFlow(); }}/> : (page === 'history' || page === 'execution') && historyRoute ? <ExecutionHistoryPage workflowId={historyRoute.workflowId} executionId={historyRoute.executionId} onBack={showAutomations} onOpenWorkflow={() => { void openFlow(historyRoute.workflowId).catch(error => notify(error.message, true)); }} onOpenRun={id => showExecutionHistory(historyRoute.workflowId, id)} onBackToHistory={() => showExecutionHistory(historyRoute.workflowId)}/> : page === 'connectors' ? <ConnectorsPage definitions={bootstrap.definitions} onBrowsePlugins={showPlugins} notify={notify}/> : page === 'plugins' ? <PluginsPage key={page} connectorsOnly={false} onBrowsePlugins={showPlugins} definitions={bootstrap.definitions} packages={bootstrap.packages} refresh={refresh} notify={notify} openCustom={() => setCustomOpen(true)}/> : page === 'vault' ? <SecretVaultPage notify={notify}/> : <>
       <div className="workflow-header">
         <div className="workflow-heading">
-          <div className="workflow-heading-top"><h1 className="workflow-title" title={flow?.name || ''}>{flow?.name || 'Select a workflow'}</h1><span className={`state-badge ${current?.deployed ? 'active' : ''}`}>{current?.deployed ? 'ACTIVE' : 'DRAFT'}</span><button className="title-edit" title="Edit workflow details" aria-label="Edit workflow details" disabled={!flow} onClick={openWorkflowSettings}><Pencil size={15}/></button>{dirty && <span className="unsaved-label">Unsaved changes</span>}</div>
+          <div className="workflow-heading-top"><h1 className="workflow-title" title={flow?.name || ''}>{flow?.name || 'Select a workflow'}</h1><span className={`state-badge ${current?.deployed ? 'active' : ''}`}><span className="state-badge-dot"/>{current?.deployed ? 'ACTIVE' : 'DRAFT'}</span><button className="title-edit" title="Edit workflow details" aria-label="Edit workflow details" disabled={!flow} onClick={openWorkflowSettings}><Pencil size={14}/></button>{dirty && <span className="unsaved-label">Unsaved changes</span>}</div>
         </div>
         <div className="workflow-actions">
-          {dirty && <button className="save-button" disabled={busy} onClick={() => void save()}><Check size={16}/> Save</button>}
-          <button className="history-button" disabled={!flow} onClick={openHistory}><Clock3 size={15}/> History</button>
-          {current?.deployed && <button className="deactivate-button" onClick={stopFlow}><Square size={14}/> Deactivate</button>}
-          <button className="activate-button" disabled={!flow || busy || (current?.deployed && !dirty && !current.needsDeploy)} onClick={() => void save(true)}><Rocket size={16}/>{busy ? 'Working…' : current?.deployed ? 'Redeploy' : 'Activate'}</button>
-          <div className="popover-anchor"><button className="more-button" title="More workflow actions" onClick={() => setMoreMenu(value => !value)}><MoreHorizontal size={20}/></button>{moreMenu && <div className="action-menu"><button onClick={() => void exportImage()}><ImageDown size={16}/> Save as image</button><button onClick={exportFlow}><ArrowDownToLine size={16}/> Export JSON</button><button onClick={() => { importRef.current?.click(); setMoreMenu(false); }}><ArrowUpFromLine size={16}/> Import JSON</button><button className="danger" onClick={deleteFlow}><Trash2 size={16}/> Delete workflow</button></div>}</div>
+          {dirty && <button className="save-button" disabled={busy} onClick={() => void save()}><Check size={15}/> Save</button>}
+          <button className="history-button" disabled={!flow} onClick={openHistory}><Clock3 size={14}/> History</button>
+          {current?.deployed && <button className="deactivate-button" onClick={stopFlow}><Square size={13}/> Deactivate</button>}
+          <button className="activate-button" disabled={!flow || busy || (current?.deployed && !dirty && !current.needsDeploy)} onClick={() => void save(true)}><Rocket size={15}/>{busy ? 'Working…' : current?.deployed ? 'Redeploy' : 'Activate'}</button>
+          <div className="popover-anchor"><button className="more-button" title="More workflow actions" onClick={() => setMoreMenu(value => !value)}><MoreHorizontal size={18}/></button>{moreMenu && <div className="action-menu"><button onClick={() => void exportImage()}><ImageDown size={15}/> Save as image</button><button onClick={exportFlow}><ArrowDownToLine size={15}/> Export JSON</button><button onClick={() => { importRef.current?.click(); setMoreMenu(false); }}><ArrowUpFromLine size={15}/> Import JSON</button><button className="danger" onClick={deleteFlow}><Trash2 size={15}/> Delete workflow</button></div>}</div>
           <input ref={importRef} type="file" accept=".json,application/json" hidden onChange={event => { const file = event.target.files?.[0]; if (file) void importFlow(file); event.target.value = ''; }}/>
         </div>
       </div>
 
       <div className="editor-body">
         <aside className="node-toolbox" aria-label="Node tools">
-          <button className="tool-search" title="Search all nodes" onClick={() => setPalette('All')}><Search size={21}/></button>
-          {(['Event', 'Condition', 'Action', 'More'] as PaletteGroup[]).map(group => <button key={group} className={`tool-category ${group.toLowerCase()} ${palette === group ? 'chosen' : ''}`} onClick={() => { setQuery(''); setPalette(palette === group ? null : group); }}><span className="tool-symbol">{group === 'Event' ? <Zap size={21} fill="white"/> : group === 'Condition' ? <ListChecks size={21}/> : group === 'Action' ? <ArrowRight size={21} strokeWidth={3}/> : <MoreHorizontal size={22}/>}</span><span>{group.toUpperCase()}</span></button>)}
-          <div className="tool-spacer"/><button className="tool-bottom" title="Help" onClick={() => { setBottomTab('help'); setBottomOpen(true); }}><CircleHelp size={20}/></button>
+          <button className="tool-search" title="Search all nodes" onClick={() => setPalette('All')}><Search size={18}/></button>
+          {(['Event', 'Condition', 'Action', 'More'] as PaletteGroup[]).map(group => <button key={group} className={`tool-category ${group.toLowerCase()} ${palette === group ? 'chosen' : ''}`} onClick={() => { setQuery(''); setPalette(palette === group ? null : group); }}><span className="tool-symbol">{group === 'Event' ? <Zap size={16} fill="currentColor"/> : group === 'Condition' ? <ListChecks size={16}/> : group === 'Action' ? <ArrowRight size={16} strokeWidth={2.5}/> : <MoreHorizontal size={17}/>}</span><span>{group.toUpperCase()}</span></button>)}
+          <div className="tool-spacer"/><button className="tool-bottom" title="Help" onClick={() => { setBottomTab('help'); setBottomOpen(true); }}><CircleHelp size={18}/></button>
         </aside>
 
         {palette && <aside className="palette-drawer"><div className="drawer-header"><div><span className="eyebrow">NODE LIBRARY</span><h2>{palette === 'All' ? 'All nodes' : palette}</h2></div><button className="small-icon" title="Close node library" onClick={() => setPalette(null)}><X size={18}/></button></div><div className="palette-search"><Search size={16}/><input placeholder="Find a node…" value={query} onChange={event => setQuery(event.target.value)}/></div><div className="palette-items">{paletteNodes.map(definition => { const Icon = icons[definition.icon] || Box; return <button key={definition.type} draggable onDragStart={event => event.dataTransfer.setData('application/wflow-node', definition.type)} onClick={() => addNode(definition)}><span className={`palette-item-icon ${toneOf(definition.type)}`}><Icon size={18}/></span><span><strong>{definition.label}</strong><small>{definition.description}</small></span><Plus size={16}/></button>; })}{paletteNodes.length === 0 && <div className="palette-empty">No nodes match your search.</div>}</div><div className="palette-footer"><button onClick={() => { setPalette(null); setCustomOpen(true); }}><Plus size={16}/> Create custom node</button><button onClick={showPlugins}><PackagePlus size={16}/> Manage plugins</button></div></aside>}
 
         {flow ? <div className="canvas" onDragOver={event => event.preventDefault()} onDrop={onDrop}>
           <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes} edgeTypes={edgeTypes} defaultEdgeOptions={edgeDefaults} onNodesChange={changes => { onNodesChange(changes); if (changes.some(change => change.type !== 'select' && change.type !== 'dimensions')) mark(); }} onEdgesChange={changes => { onEdgesChange(changes); if (changes.some(change => change.type !== 'select')) mark(); }} onConnect={onConnect} onNodeClick={(_, node) => { setSelectedId(node.id); setWorkflowSettingsOpen(false); setHistoryOpen(false); }} onNodeDoubleClick={(_, node) => { if (node.data.nodeType === 'inject') void runInject(node.id); }} onPaneClick={() => { setSelectedId(null); setPalette(null); }} fitView fitViewOptions={{ padding: .35 }} snapToGrid snapGrid={[20, 20]} proOptions={{ hideAttribution: true }}>
-            <Background variant={BackgroundVariant.Dots} color="#dfe7e8" gap={22} size={1.3}/>
+            <Background variant={BackgroundVariant.Dots} color="#cbd5e1" gap={24} size={1.2}/>
             <Controls position="bottom-right" showInteractive={false}/>
           </ReactFlow>
-          <div className="canvas-tip">Drag nodes onto the canvas or click to add</div>
+          <div className="canvas-tip"><Sparkles size={12}/> Drag nodes onto the canvas or click to add</div>
         </div> : <div className="canvas empty-canvas"><GitBranch size={42}/><h2>Create your first workflow</h2><button className="activate-button" onClick={createFlow}><Plus size={16}/> New workflow</button></div>}
 
         {workflowSettingsOpen && flow && <aside className="inspector-drawer workflow-settings-drawer" aria-label="Workflow details" style={{ width: `min(${inspectorWidth}px, calc(100vw - 140px))` }}>
